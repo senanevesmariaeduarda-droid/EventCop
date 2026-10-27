@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos - EventCop</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #F2E6DA;
+            color: #5A0505;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* HEADER */
+        .header {
+            width: 100%;
+            height: 120px;
+            padding: 0 50px;
+            background: #5A0505;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-top: 20px;
+        }
+
+        .logo-header {
+            width: 200px;
+            height: auto;
+            object-fit: contain;
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            margin-top: 10px;
+        }
+
+        .menu a {
+            color: #FFF8F2;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .menu a:hover {
+            opacity: 0.8;
+        }
+
+        .btn-header {
+            padding: 8px 17px;
+            border: 1px solid #FFF8F2;
+            border-radius: 25px;
+        }
+
+        /* HERO EVENTOS */
+        .hero-eventos {
+            background: #5A0505;
+            color: #FFF8F2;
+            padding: 40px 9% 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .hero-eventos-texto {
+            max-width: 550px;
+        }
+
+        .hero-eventos-texto h1 {
+            font-size: 42px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            line-height: 1.15;
+            color: #FFF8F2;
+        }
+
+        .hero-eventos-texto p {
+            font-size: 18px;
+            color: #F2E6DA;
+            margin-bottom: 30px;
+        }
+
+        .caixa-busca {
+            position: relative;
+            max-width: 480px;
+        }
+
+        .caixa-busca input {
+            width: 100%;
+            padding: 14px 20px 14px 45px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 248, 242, 0.4);
+            background: transparent;
+            color: #FFF8F2;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .caixa-busca input::placeholder {
+            color: rgba(255, 248, 242, 0.7);
+        }
+
+        .icone-busca {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #FFF8F2;
+            font-size: 16px;
+        }
+
+        .hero-eventos-imagem {
+            max-width: 450px;
+            width: 100%;
+        }
+
+        .hero-eventos-imagem img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* CONTEÚDO PRINCIPAL DE EVENTOS */
+        .container-eventos {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        /* FILTROS DE CATEGORIA */
+        .filtros-categoria {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 45px;
+        }
+
+        .btn-filtro {
+            padding: 8px 20px;
+            border-radius: 20px;
+            background: #FFF8F2;
+            color: #5A0505;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-filtro.ativo,
+        .btn-filtro:hover {
+            background: #5A0505;
+            color: #FFF8F2;
+        }
+
+        .btn-filtro-select {
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: #FFF8F2;
+            color: #5A0505;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* SEÇÃO DE DESTAQUES */
+        .cabecalho-secao {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .titulo-secao-icone {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #5A0505;
+        }
+
+        .link-ver-todos {
+            color: #5A0505;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .carrossel-destaques-container {
+            position: relative;
+            margin-bottom: 60px;
+        }
+
+        .grid-eventos-destaque {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .seta-carrossel {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #FFF8F2;
+            color: #5A0505;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            z-index: 5;
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .seta-carrossel.esquerda {
+            left: -20px;
+        }
+
+        .seta-carrossel.direita {
+            right: -20px;
+        }
+
+        /* CARD DE EVENTO */
+        .card-evento {
+            background: #FFF8F2;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(90, 5, 5, 0.08);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .capa-card {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            background: #e5d5c5;
+        }
+
+        .capa-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .badge-status {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .badge-andamento {
+            background: #34d399;
+            color: #064e3b;
+        }
+
+        .badge-breve {
+            background: #fde047;
+            color: #713f12;
+        }
+
+        .badge-limitadas {
+            background: #fca5a5;
+            color: #7f1d1d;
+        }
+
+        .badge-finalizado {
+            background: #e2e8f0;
+            color: #475569;
+        }
+
+        .conteudo-card {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .categoria-tag {
+            font-size: 11px;
+            font-weight: bold;
+            color: #7D1A1A;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .card-evento h3 {
+            font-size: 18px;
+            font-weight: bold;
+            color: #5A0505;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #5A0505;
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+
+        .rodape-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 15px;
+        }
+
+        .pill-modalidade {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .modalidade-presencial {
+            background: #f6eeb3;
+            color: #854d0e;
+        }
+
+        .modalidade-online {
+            background: #e0e7ff;
+            color: #3730a3;
+        }
+
+        .btn-ver-evento {
+            padding: 8px 18px;
+            background: #5A0505;
+            color: #FFF8F2;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            transition: opacity 0.2s;
+        }
+
+        .btn-ver-evento:hover {
+            opacity: 0.9;
+        }
+
+        /* TODOS OS EVENTOS & AÇÕES DE VISUALIZAÇÃO */
+        .acoes-todos-eventos {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .botoes-visualizacao {
+            display: flex;
+            gap: 5px;
+        }
+
+        .btn-vis {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            border: none;
+            background: #FFF8F2;
+            color: #5A0505;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-vis.ativo {
+            background: #5A0505;
+            color: #FFF8F2;
+        }
+
+        .grid-todos-eventos {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 50px;
+        }
+
+        /* PAGINAÇÃO */
+        .paginacao {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 60px;
+        }
+
+        .pagina-num {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #FFF8F2;
+            color: #5A0505;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .pagina-num.ativa {
+            background: #5A0505;
+            color: #FFF8F2;
+        }
+
+        /* NEWSLETTER */
+        .caixa-newsletter {
+            background: #FFF8F2;
+            border-radius: 20px;
+            padding: 30px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            box-shadow: 0 4px 15px rgba(90, 5, 5, 0.05);
+        }
+
+        .newsletter-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .icone-envelope {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #fce7f3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+
+        .newsletter-texto h3 {
+            font-size: 20px;
+            font-weight: bold;
+            color: #5A0505;
+            margin-bottom: 4px;
+        }
+
+        .newsletter-texto p {
+            font-size: 14px;
+            color: #5A0505;
+            opacity: 0.8;
+        }
+
+        .form-newsletter {
+            display: flex;
+            gap: 10px;
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .form-newsletter input {
+            flex: 1;
+            padding: 12px 20px;
+            border-radius: 25px;
+            border: 1px solid rgba(90, 5, 5, 0.2);
+            background: #ffffff;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .form-newsletter button {
+            padding: 12px 24px;
+            background: #5A0505;
+            color: #FFF8F2;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* FOOTER */
+        .footer {
+            width: 100%;
+            padding: 50px 4% 25px;
+            background: #5A0505;
+            color: #FFF8F2;
+            display: grid;
+            grid-template-columns: 1.25fr 1fr 1.1fr 1.15fr;
+            column-gap: 40px;
+            border-top: 1px solid rgba(255, 248, 242, 0.2);
+        }
+
+        .footer-coluna {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .footer-coluna:not(:first-child) {
+            border-left: 1px solid rgba(125, 26, 26, 0.35);
+            padding-left: 35px;
+        }
+
+        .logo-footer {
+            width: 320px;
+            height: auto;
+        }
+
+        .descricao-footer {
+            max-width: 310px;
+            font-size: 16px;
+            line-height: 1.55;
+        }
+
+        .traco {
+            width: 48px;
+            height: 4px;
+            margin-top: 7px;
+            background: #FFF8F2;
+            border-radius: 10px;
+        }
+
+        .footer-info {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .footer-info img {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .footer-info p {
+            font-size: 15px;
+            line-height: 1.55;
+        }
+
+        .footer-titulo {
+            min-height: 85px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .footer-titulo > img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .footer-titulo h3 {
+            font-size: 21px;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        .footer-coluna > a {
+            color: #FFF8F2;
+            font-size: 16px;
+            line-height: 1.4;
+        }
+
+        .footer-coluna > a:hover {
+            opacity: 0.75;
+        }
+
+        .ajuda {
+            margin-top: 8px;
+            width: 300px;
+            padding: 18px 20px;
+            background: #7D1A1A;
+            border-radius: 13px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .fone-ajuda {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .ajuda h3 {
+            margin: 2px 0 6px;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .ajuda p {
+            margin: 0 0 14px;
+            font-size: 12px;
+            line-height: 1.45;
+        }
+
+        .btn-fale {
+            width: 160px;
+            min-width: 0;
+            padding: 10px 15px;
+            background: #FFF8F2;
+            color: #5A0505;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .btn-fale span {
+            font-size: 17px;
+        }
+
+        .footer-baixo {
+            grid-column: 1 / -1;
+            margin-top: 40px;
+            padding-top: 22px;
+            border-top: 1px solid rgba(125, 26, 26, 0.35);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .redes {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .redes strong {
+            font-size: 15px;
+        }
+
+        .redes img {
+            width: 180px;
+            height: auto;
+        }
+
+        .footer-baixo > p {
+            font-size: 14px;
+        }
+
+        .footer-politicas {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-politicas a,
+        .footer-politicas span {
+            color: #FFF8F2;
+            font-size: 14px;
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 1100px) {
+            .grid-eventos-destaque,
+            .grid-todos-eventos {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer {
+                grid-template-columns: 1fr 1fr;
+                row-gap: 45px;
+            }
+            .footer-coluna:not(:first-child) {
+                border-left: none;
+                padding-left: 0;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .header {
+                flex-direction: column;
+                height: auto;
+                padding-bottom: 20px;
+            }
+            .logo-header {
+                top: 0;
+                left: 0;
+                width: 180px;
+            }
+            .menu {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            .hero-eventos {
+                flex-direction: column;
+                text-align: center;
+            }
+            .caixa-busca {
+                margin: 0 auto;
+            }
+            .caixa-newsletter {
+                flex-direction: column;
+                text-align: center;
+            }
+            .newsletter-info {
+                flex-direction: column;
+            }
+            .form-newsletter {
+                width: 100%;
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .grid-eventos-destaque,
+            .grid-todos-eventos {
+                grid-template-columns: 1fr;
+            }
+            .footer {
+                grid-template-columns: 1fr;
+            }
+            .footer-baixo {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <a href="../index.php">
+            <img src="logo bege.jpeg" alt="EventCop" class="logo-header">
+        </a>
+
+        <nav class="menu">
+            
+            <a href="">EventCop Empresas</a>
+            <a href="">Cases</a>
+            <a href="">Planos e Preços</a>
+            <a href="">Sou um organizador</a>
+            <a href="" class="btn-header">Criar Evento</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="hero-eventos">
+            <div class="hero-eventos-texto">
+                <h1>Encontre o próximo evento para você</h1>
+                <p>Explore Workshops, palestras e experiências corporativas em diferentes áreas</p>
+
+                <div class="caixa-busca">
+                    <span class="icone-busca"><img src="lupa.png"></span>
+                    <input type="text" placeholder="Buscar evento">
+                </div>
+            </div>
+
+            <div class="hero-eventos-imagem">
+                <img src="imagem banner.png" alt="Caderno EventCop e crachá">
+            </div>
+        </section>
+
+        <!-- CONTAINER DE EVENTOS -->
+        <div class="container-eventos">
+
+            <!-- FILTROS -->
+            <div class="filtros-categoria">
+                <button class="btn-filtro ativo">⠿ Todos</button>
+                <button class="btn-filtro">⚙ Tecnologia</button>
+                <button class="btn-filtro"><img src="grafico-de-negocios (1).png"> Negócios</button>
+                <button class="btn-filtro"><img src="megafone.png"> Marketing</button>
+                <button class="btn-filtro"><img src="grupo-de-usuarios.png"> Liderança</button>
+                <button class="btn-filtro"><img src="localizacao.png"> Inovação</button>
+
+                <select class="btn-filtro-select">
+                    <option><img src="calendario.png"> Data ⌄</option>
+                </select>
+
+                <select class="btn-filtro-select">
+                    <option><img src="localizacao.png"> Localização ⌄</option>
+                </select>
+            </div>
+
+            <!-- EVENTOS EM DESTAQUE -->
+            <div class="carrossel-destaques-container">
+                <div class="cabecalho-secao">
+                    <div class="titulo-secao-icone">
+                        <span><img src="fogueira.png" width="40px"></span>
+                        <h2>Eventos em destaque</h2>
+                    </div>
+                    <a href="" class="link-ver-todos">Ver todos →</a>
+                </div>
+
+                <button class="seta-carrossel esquerda">‹</button>
+                <button class="seta-carrossel direita">›</button>
+
+                <div class="grid-eventos-destaque">
+
+                    <!-- CARD 1 -->
+                    <div class="card-evento">
+                        <div class="capa-card">
+                            <img src="imagem evento 1.jpeg" alt="Workshop de Tecnologia 2026">
+                            <span class="badge-status badge-andamento">+Em andamento</span>
+                        </div>
+                        <div class="conteudo-card">
+                            <span class="categoria-tag">TECNOLOGIA</span>
+                            <h3>Workshop de Tecnologia 2026</h3>
+                            <div class="info-item"><img src="calendario.png"> 15 de setembro de 2026</div>
+                            <div class="info-item"><img src="localizacao.png"> São José dos Campos - SP</div>
+                            <div class="rodape-card">
+                                <span class="pill-modalidade modalidade-presencial"><img src="do-utilizador.png" width="20px"> Presencial</span>
+                                <a href="" class="btn-ver-evento">Ver evento →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARD 2 -->
+                    <div class="card-evento">
+                        <div class="capa-card">
+                            <img src="imagem evento 2.jpeg" alt="Congresso de Inovação 2026">
+                            <span class="badge-status badge-breve">Em breve</span>
+                        </div>
+                        <div class="conteudo-card">
+                            <span class="categoria-tag">INOVAÇÃO</span>
+                            <h3>Congresso de Inovação 2026</h3>
+                            <div class="info-item"><img src="calendario.png"> 22 de setembro de 2026</div>
+                            <div class="info-item"><img src="localizacao.png"> São Paulo - SP</div>
+                            <div class="rodape-card">
+                                <span class="pill-modalidade modalidade-presencial"><img src="do-utilizador.png" width="20px"> Presencial</span>
+                                <a href="" class="btn-ver-evento">Ver evento →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARD 3 -->
+                    <div class="card-evento">
+                        <div class="capa-card">
+                            <img src="imagem evento 3.jpeg" alt="Palestra de Marketing">
+                            <span class="badge-status badge-limitadas">Vagas limitadas</span>
+                        </div>
+                        <div class="conteudo-card">
+                            <span class="categoria-tag">MARKETING</span>
+                            <h3>Palestra de Marketing</h3>
+                            <div class="info-item"><img src="calendario.png"> 28 de setembro de 2026</div>
+                            <div class="info-item"><img src="localizacao.png"> Campinas - SP</div>
+                            <div class="rodape-card">
+                                <span class="pill-modalidade modalidade-presencial"><img src="do-utilizador.png" width="20px"> Presencial</span>
+                                <a href="" class="btn-ver-evento">Ver evento →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- TODOS OS EVENTOS -->
+            <div class="cabecalho-secao">
+                <h2>Todos os eventos</h2>
+                <div class="acoes-todos-eventos">
+                    <select class="btn-filtro-select">
+                        <option>Mais recentes ⌄</option>
+                    </select>
+                    <div class="botoes-visualizacao">
+                        <button class="btn-vis ativo">田</button>
+                        <button class="btn-vis">☰</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-todos-eventos">
+
+                <!-- CARD 4 -->
+                <div class="card-evento">
+                    <div class="capa-card">
+                        <img src="imagem evento 4.jpeg" alt="Encontro de Lideranças 2026">
+                        <span class="badge-status badge-finalizado">Finalizado</span>
+                    </div>
+                    <div class="conteudo-card">
+                        <span class="categoria-tag">LIDERANÇA</span>
+                        <h3>Encontro de Lideranças 2026</h3>
+                        <div class="info-item"><img src="calendario.png"> 10 de agosto de 2026</div>
+                        <div class="info-item"><img src="localizacao.png"> São José dos Campos - SP</div>
+                        <div class="rodape-card">
+                            <span class="pill-modalidade modalidade-presencial"><img src="do-utilizador.png" width="20px"> Presencial</span>
+                            <a href="" class="btn-ver-evento">Ver evento →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 5 -->
+                <div class="card-evento">
+                    <div class="capa-card">
+                        <img src="imagem evento 5.jpeg" alt="Fórum de Negócios e Estratégias">
+                        <span class="badge-status badge-breve">Em breve</span>
+                    </div>
+                    <div class="conteudo-card">
+                        <span class="categoria-tag">NEGÓCIOS</span>
+                        <h3>Fórum de Negócios e Estratégias</h3>
+                        <div class="info-item"><img src="calendario.png"> 05 de outubro de 2026</div>
+                        <div class="info-item"><img src="localizacao.png"> São Paulo - SP</div>
+                        <div class="rodape-card">
+                            <span class="pill-modalidade modalidade-presencial"><img src="do-utilizador.png" width="20px"> Presencial</span>
+                            <a href="" class="btn-ver-evento">Ver evento →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 6 -->
+                <div class="card-evento">
+                    <div class="capa-card">
+                        <img src="imagem evento 6.jpeg" alt="Imersão em Dados & IA">
+                        <span class="badge-status badge-limitadas">Vagas limitadas</span>
+                    </div>
+                    <div class="conteudo-card">
+                        <span class="categoria-tag">TECNOLOGIA</span>
+                        <h3>Imersão em Dados & IA</h3>
+                        <div class="info-item"><img src="calendario.png"> 18 de outubro de 2026</div>
+                        <div class="info-item"><img src="localizacao.png"> Online</div>
+                        <div class="rodape-card">
+                            <span class="pill-modalidade modalidade-online"><img src="do-utilizador.png" width="20px"> Online</span>
+                            <a href="" class="btn-ver-evento">Ver evento →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 7 -->
+                <div class="card-evento">
+                    <div class="capa-card">
+                        <img src="imagem evento 7.jpeg" alt="Liderança que Inspira">
+                        <span class="badge-status badge-breve">Em breve</span>
+                    </div>
+                    <div class="conteudo-card">
+                        <span class="categoria-tag">LIDERANÇA</span>
+                        <h3>Liderança que Inspira</h3>
+                        <div class="info-item"><img src="calendario.png"> 25 de outubro de 2026</div>
+                        <div class="info-item"><img src="localizacao.png"> Belo Horizonte - MG</div>
+                        <div class="rodape-card">
+                            <span class="pill-modalidade modalidade-presencial"><img src="do-utilizador.png" width="20px"> Presencial</span>
+                            <a href="" class="btn-ver-evento">Ver evento →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 8 -->
+                <div class="card-evento">
+                    <div class="capa-card">
+                        <img src="imagem evento 8.jpeg" alt="Comunicação que Conecta">
+                        <span class="badge-status badge-breve">Em breve</span>
+                    </div>
+                    <div class="conteudo-card">
+                        <span class="categoria-tag">DESENVOLVIMENTO</span>
+                        <h3>Comunicação que Conecta</h3>
+                        <div class="info-item"><img src="calendario.png"> 02 de novembro de 2026</div>
+                        <div class="info-item"><img src="localizacao.png"> Rio de Janeiro - RJ</div>
+                        <div class="rodape-card">
+                            <span class="pill-modalidade modalidade-presencial"><img src="do-utilizador.png" width="20px"> Presencial</span>
+                            <a href="" class="btn-ver-evento">Ver evento →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 9 -->
+                <div class="card-evento">
+                    <div class="capa-card">
+                        <img src="imagem evento 9.jpeg" alt="Inovação Aberta 2026">
+                        <span class="badge-status badge-breve">Em breve</span>
+                    </div>
+                    <div class="conteudo-card">
+                        <span class="categoria-tag">INOVAÇÃO</span>
+                        <h3>Inovação Aberta 2026</h3>
+                        <div class="info-item"><img src="calendario.png"> 09 de novembro de 2026</div>
+                        <div class="info-item"><img src="localizacao.png"> Curitiba - PR</div>
+                        <div class="rodape-card">
+                            <span class="pill-modalidade modalidade-presencial"><img src="do-utilizador.png" width="20px"> Presencial</span>
+                            <a href="" class="btn-ver-evento">Ver evento →</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        
+
+            <!-- NEWSLETTER -->
+            <div class="caixa-newsletter">
+                <div class="newsletter-info">
+                    <div class="icone-envelope"><img src="enviar.png"></div>
+                    <div class="newsletter-texto">
+                        <h3>Receba novidades sobre eventos</h3>
+                        <p>Cadastre-se e seja o primeiro a saber sobre lançamentos e oportunidades para impulsionar sua carreira e seu negócio.</p>
+                    </div>
+                </div>
+                <form class="form-newsletter" onsubmit="event.preventDefault();">
+                    <input type="email" placeholder="Seu melhor e-mail" required>
+                    <button type="submit">Cadastrar</button>
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+     <footer class="footer">
+        <div class="footer-coluna footer-empresa">
+            <img src="logo footer.jpg.jpeg" alt="EventCop" class="logo-footer">
+            <p class="descricao-footer">
+                A plataforma completa para planejar, organizar e executar eventos corporativos com eficiência.
+            </p>
+            <div class="traco"></div>
+
+            <div class="footer-info">
+                <img src="imagem localizacao footer.png" alt="Localização">
+                <p>
+                    Avenida das Nações, nº 850<br>
+                    São José dos Campos - SP<br>
+                    CEP: 12227-000
+                </p>
+            </div>
+
+            <div class="footer-info">
+                <img src="imagem CNPJ footer.png" alt="Documento">
+                <p>CNPJ: 48.729.315/0001-62</p>
+            </div>
+
+            <div class="footer-info">
+                <img src="imagem e-mail footer.png" alt="E-mail">
+                <p>contato@eventcop.com.br</p>
+            </div>
+
+            <div class="footer-info">
+                <img src="imagem telefone footer.png" alt="Telefone">
+                <p>(12) 3456-7890</p>
+            </div>
+        </div>
+
+        <div class="footer-coluna">
+            <div class="footer-titulo">
+                <img src="imagem calendario footer.png" alt="Calendário">
+                <div>
+                    <h3>Tipos de Eventos</h3>
+                    <div class="traco"></div>
+                </div>
+            </div>
+            <a href="">› Corporativos</a>
+            <a href="">› Workshops e Palestras</a>
+            <a href="">› Treinamentos</a>
+            <a href="">› Feiras e Exposições</a>
+        </div>
+
+        <div class="footer-coluna">
+            <div class="footer-titulo">
+                <img src="imagem recursos plataforma footer.png" alt="Recursos">
+                <div>
+                    <h3>Recursos da<br>Plataforma</h3>
+                    <div class="traco"></div>
+                </div>
+            </div>
+            <a href="">› Gestão de Eventos</a>
+            <a href="">› Inscrições e Convites</a>
+            <a href="">› Relatórios e Métricas</a>
+            <a href="">› Agendamento com Consultores</a>
+        </div>
+
+        <div class="footer-coluna">
+            <div class="footer-titulo">
+                <img src="imagem comece na plataforma footer.png" alt="Comece na plataforma">
+                <div>
+                    <h3>Comece na<br>Plataforma</h3>
+                    <div class="traco"></div>
+                </div>
+            </div>
+            <a href="">› Criar minha conta</a>
+            <a href="">› Quero organizar um evento</a>
+
+            <div class="ajuda">
+                <img src="imagem precisa de ajuda footer.png" alt="Atendimento" class="fone-ajuda">
+                <div>
+                    <h3>Precisa de ajuda?</h3>
+                    <p>Nossa equipe está pronta<br>para te atender!</p>
+                    <a href="" class="btn-fale">
+                        Fale conosco
+                        <span>→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-baixo">
+            <div class="redes">
+                <strong>Siga-nos</strong>
+                <img src="imagem redes sociais footer.png" alt="Instagram, LinkedIn e YouTube">
+            </div>
+            <p>©️ 2026 EventCop. Todos os direitos reservados.</p>
+            <div class="footer-politicas">
+                <a href="">Política de Privacidade</a>
+                <span>|</span>
+                <a href="">Termos de Uso</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

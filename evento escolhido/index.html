@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshop de Tecnologia 2026 - EventCop</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #F2E6DA;
+            color: #5A0505;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* HEADER */
+        .header {
+            width: 100%;
+            height: 120px;
+            padding: 0 50px;
+            background: #5A0505;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-top: 20px;
+        }
+
+        .logo-header {
+            width: 200px;
+            height: auto;
+            object-fit: contain;
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            margin-top: 10px;
+        }
+
+        .menu a {
+            color: #FFF8F2;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .menu a:hover {
+            opacity: 0.8;
+        }
+
+        .btn-header {
+            padding: 8px 17px;
+            border: 1px solid #FFF8F2;
+            border-radius: 25px;
+        }
+
+        /* CONTEÚDO DO EVENTO */
+        .container-detalhes-evento {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px 20px 60px;
+        }
+
+        /* BREADCRUMB */
+        .topo-navegacao {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #5A0505;
+            opacity: 0.8;
+        }
+
+        .breadcrumb a {
+            color: #5A0505;
+            font-weight: 600;
+        }
+
+        .link-relatorios {
+            color: #5A0505;
+            font-weight: bold;
+        }
+
+        /* HERO DETALHES */
+        .hero-detalhe-card {
+            background: #FFF8F2;
+            border-radius: 20px;
+            padding: 25px;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 30px;
+            box-shadow: 0 4px 15px rgba(90, 5, 5, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .imagem-banner-evento {
+            position: relative;
+            width: 100%;
+            height: 320px;
+            border-radius: 14px;
+            overflow: hidden;
+            background: #333;
+        }
+
+        .imagem-banner-evento img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .badge-andamento {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 6px 14px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            background: #34d399;
+            color: #064e3b;
+        }
+
+        .info-principal-evento {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .tag-categoria-detalhe {
+            display: inline-block;
+            background: #e0e7ff;
+            color: #3730a3;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .info-principal-evento h1 {
+            font-size: 32px;
+            font-weight: bold;
+            color: #5A0505;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .descricao-curta {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #5A0505;
+            opacity: 0.85;
+            margin-bottom: 20px;
+        }
+
+        .lista-meta-dados {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 25px;
+            font-size: 14px;
+            color: #5A0505;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .botoes-acao-evento {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-participar {
+            padding: 12px 28px;
+            background: #5A0505;
+            color: #FFF8F2;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-compartilhar {
+            padding: 12px 24px;
+            background: transparent;
+            color: #5A0505;
+            border: 1px solid rgba(90, 5, 5, 0.3);
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* NAVEGAÇÃO DE ABAS */
+        .abas-navegacao {
+            display: flex;
+            gap: 30px;
+            border-bottom: 1px solid rgba(90, 5, 5, 0.15);
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+        }
+
+        .aba-link {
+            color: #5A0505;
+            font-weight: 600;
+            font-size: 15px;
+            padding-bottom: 10px;
+            position: relative;
+        }
+
+        .aba-link.ativa {
+            color: #7D1A1A;
+            font-weight: bold;
+        }
+
+        .aba-link.ativa::after {
+            content: '';
+            position: absolute;
+            bottom: -11px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #7D1A1A;
+            border-radius: 2px;
+        }
+
+        /* GRID CONTEÚDO SOBRE E SIDEBAR */
+        .grid-detalhes-conteudo {
+            display: grid;
+            grid-template-columns: 1.8fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .card-secao-branca {
+            background: #FFF8F2;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(90, 5, 5, 0.03);
+        }
+
+        .card-secao-branca h3 {
+            font-size: 18px;
+            font-weight: bold;
+            color: #5A0505;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-secao-branca p {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #5A0505;
+        }
+
+        .lista-aprendizado {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .lista-aprendizado li {
+            font-size: 14px;
+            color: #5A0505;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icone-check {
+            color: #5A0505;
+            font-weight: bold;
+        }
+
+        /* SIDEBAR (INFORMAÇÕES & ORGANIZADOR) */
+        .tabela-infos {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            font-size: 13px;
+        }
+
+        .linha-info {
+            display: flex;
+            justify-content: space-between;
+            color: #5A0505;
+        }
+
+        .linha-info strong {
+            font-weight: 600;
+        }
+
+        .card-organizador {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .perfil-org {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar-org {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #5A0505;
+            color: #FFF8F2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .btn-ver-perfil {
+            padding: 6px 14px;
+            border: 1px solid rgba(90, 5, 5, 0.3);
+            border-radius: 20px;
+            font-size: 12px;
+            color: #5A0505;
+            font-weight: bold;
+        }
+
+        /* PROGRAMAÇÃO DO EVENTO (TIMELINE) */
+        .timeline-programacao {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 20px;
+            position: relative;
+        }
+
+        .hora-item {
+            font-size: 13px;
+            font-weight: bold;
+            color: #5A0505;
+            width: 100px;
+            flex-shrink: 0;
+        }
+
+        .detalhe-item-timeline h4 {
+            font-size: 15px;
+            font-weight: bold;
+            color: #5A0505;
+            margin-bottom: 3px;
+        }
+
+        .detalhe-item-timeline p {
+            font-size: 13px;
+            color: #5A0505;
+            opacity: 0.8;
+            margin: 0;
+        }
+
+        /* PALESTRANTES */
+        .carrossel-palestrantes {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .grid-palestrantes {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+        }
+
+        .card-palestrante {
+            background: #FFF8F2;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .foto-palestrante {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 10px;
+            display: block;
+        }
+
+        .card-palestrante h4 {
+            font-size: 14px;
+            font-weight: bold;
+            color: #5A0505;
+            margin-bottom: 4px;
+        }
+
+        .card-palestrante p {
+            font-size: 11px;
+            color: #5A0505;
+            opacity: 0.8;
+            margin-bottom: 8px;
+        }
+
+        .icone-linkedin {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: #7D1A1A;
+            color: #FFF8F2;
+            border-radius: 4px;
+            font-size: 11px;
+            line-height: 20px;
+            font-weight: bold;
+        }
+
+        /* LOCAL E FAQ GRID */
+        .grid-local-faq {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .imagem-mapa {
+            width: 100%;
+            height: 140px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .btn-google-maps {
+            display: block;
+            text-align: center;
+            padding: 10px;
+            border: 1px solid rgba(90, 5, 5, 0.3);
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: bold;
+            color: #5A0505;
+        }
+
+        .accordion-faq {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .item-accordion {
+            border-bottom: 1px solid rgba(90, 5, 5, 0.15);
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            font-weight: bold;
+            color: #5A0505;
+            cursor: pointer;
+        }
+
+        /* CALL TO ACTION INSCRIÇÃO */
+        .caixa-cta-inscricao {
+            background: #5A0505;
+            color: #FFF8F2;
+            border-radius: 16px;
+            padding: 25px 35px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .cta-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .icone-maleta {
+            font-size: 32px;
+        }
+
+        .cta-texto h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 4px;
+            color: #FFF8F2;
+        }
+
+        .cta-texto p {
+            font-size: 13px;
+            color: #F2E6DA;
+            margin: 0;
+        }
+
+        .form-cta {
+            display: flex;
+            gap: 10px;
+        }
+
+        .form-cta input {
+            padding: 10px 18px;
+            border-radius: 20px;
+            border: none;
+            outline: none;
+            font-size: 13px;
+            width: 220px;
+        }
+
+        .form-cta button {
+            padding: 10px 20px;
+            background: #7D1A1A;
+            color: #FFF8F2;
+            border: none;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        /* FOOTER */
+        .footer {
+            width: 100%;
+            padding: 50px 4% 25px;
+            background: #5A0505;
+            color: #FFF8F2;
+            display: grid;
+            grid-template-columns: 1.25fr 1fr 1.1fr 1.15fr;
+            column-gap: 40px;
+            border-top: 1px solid rgba(255, 248, 242, 0.2);
+        }
+
+        .footer-coluna {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .footer-coluna:not(:first-child) {
+            border-left: 1px solid rgba(125, 26, 26, 0.35);
+            padding-left: 35px;
+        }
+
+        .logo-footer {
+            width: 320px;
+            height: auto;
+        }
+
+        .descricao-footer {
+            max-width: 310px;
+            font-size: 16px;
+            line-height: 1.55;
+        }
+
+        .traco {
+            width: 48px;
+            height: 4px;
+            margin-top: 7px;
+            background: #FFF8F2;
+            border-radius: 10px;
+        }
+
+        .footer-info {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .footer-info img {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .footer-info p {
+            font-size: 15px;
+            line-height: 1.55;
+        }
+
+        .footer-titulo {
+            min-height: 85px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .footer-titulo > img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .footer-titulo h3 {
+            font-size: 21px;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        .footer-coluna > a {
+            color: #FFF8F2;
+            font-size: 16px;
+            line-height: 1.4;
+        }
+
+        .footer-coluna > a:hover {
+            opacity: 0.75;
+        }
+
+        .ajuda {
+            margin-top: 8px;
+            width: 300px;
+            padding: 18px 20px;
+            background: #7D1A1A;
+            border-radius: 13px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .fone-ajuda {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .ajuda h3 {
+            margin: 2px 0 6px;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .ajuda p {
+            margin: 0 0 14px;
+            font-size: 12px;
+            line-height: 1.45;
+        }
+
+        .btn-fale {
+            width: 160px;
+            min-width: 0;
+            padding: 10px 15px;
+            background: #FFF8F2;
+            color: #5A0505;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .btn-fale span {
+            font-size: 17px;
+        }
+
+        .footer-baixo {
+            grid-column: 1 / -1;
+            margin-top: 40px;
+            padding-top: 22px;
+            border-top: 1px solid rgba(125, 26, 26, 0.35);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .redes {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .redes strong {
+            font-size: 15px;
+        }
+
+        .redes img {
+            width: 180px;
+            height: auto;
+        }
+
+        .footer-baixo > p {
+            font-size: 14px;
+        }
+
+        .footer-politicas {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-politicas a,
+        .footer-politicas span {
+            color: #FFF8F2;
+            font-size: 14px;
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 1100px) {
+            .hero-detalhe-card,
+            .grid-detalhes-conteudo,
+            .grid-local-faq {
+                grid-template-columns: 1fr;
+            }
+            .grid-palestrantes {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .footer {
+                grid-template-columns: 1fr 1fr;
+                row-gap: 45px;
+            }
+            .footer-coluna:not(:first-child) {
+                border-left: none;
+                padding-left: 0;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .header {
+                flex-direction: column;
+                height: auto;
+                padding-bottom: 20px;
+            }
+            .logo-header {
+                top: 0;
+                left: 0;
+                width: 180px;
+            }
+            .menu {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            .grid-palestrantes {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .caixa-cta-inscricao {
+                flex-direction: column;
+                text-align: center;
+            }
+            .cta-info {
+                flex-direction: column;
+            }
+            .form-cta {
+                width: 100%;
+                flex-direction: column;
+            }
+            .form-cta input {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .grid-palestrantes {
+                grid-template-columns: 1fr;
+            }
+            .footer {
+                grid-template-columns: 1fr;
+            }
+            .footer-baixo {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <a href="../index.php">
+            <img src="logo bege.jpeg" alt="EventCop" class="logo-header">
+        </a>
+
+        <nav class="menu">
+            
+            <a href="">EventCop Empresas</a>
+            <a href="">Cases</a>
+            <a href="">Planos e Preços</a>
+            <a href="">Sou um organizador</a>
+            <a href="" class="btn-header">Criar Evento</a>
+        </nav>
+    </header>
+
+    <main class="container-detalhes-evento">
+
+        <!-- BREADCRUMB -->
+        <div class="topo-navegacao">
+            <div class="breadcrumb">
+                <a href="#">← Voltar</a>
+                <span>›</span>
+                <a href="#">Todos os eventos</a>
+                <span>›</span>
+                <span>Workshop de Tecnologia 2026</span>
+            </div>
+            <a href="#" class="link-relatorios">Relatórios e métricas</a>
+        </div>
+
+        <!-- HERO DETALHES EVENTO -->
+        <div class="hero-detalhe-card">
+            <div class="imagem-banner-evento">
+                <img src="imagem evento 1.jpeg" alt="Workshop de Tecnologia 2026">
+                <span class="badge-andamento">Em andamento</span>
+            </div>
+
+            <div class="info-principal-evento">
+                <div>
+                    <span class="tag-categoria-detalhe">TECNOLOGIA</span>
+                    <h1>Workshop de Tecnologia 2026</h1>
+                    <p class="descricao-curta">Um dia inteiro de aprendizado, troca de experiências e conexões com especialistas do mercado de tecnologia.</p>
+
+                    <div class="lista-meta-dados">
+                        <div class="meta-item"><img src="calendario.png"> 15 de setembro de 2026</div>
+                        <div class="meta-item"><img src="relogio (1).png"> 08h00 - 18h00</div>
+                        <div class="meta-item"><img src="localizacao.png"> São José dos Campos - SP</div>
+                        <div class="meta-item"><img src="do-utilizador (1).png"> Presencial</div>
+                        <div class="meta-item"><img src="grupo-de-usuarios.png"> 120 participantes confirmados</div>
+                    </div>
+                </div>
+
+                <div class="botoes-acao-evento">
+                    <button class="btn-participar"><img src="pessoa.png" width="20px"> Quero participar</button>
+                    <button class="btn-compartilhar"><img src="compartilhar.png" width="20px"> Compartilhar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ABAS DE NAVEGAÇÃO -->
+        <div class="abas-navegacao">
+            <a href="#sobre" class="aba-link ativa">Sobre o evento</a>
+            <a href="#programacao" class="aba-link">Programação</a>
+            <a href="#palestrantes" class="aba-link">Palestrantes</a>
+            <a href="#local" class="aba-link">Local</a>
+            <a href="#faq" class="aba-link">Perguntas frequentes</a>
+        </div>
+
+        <!-- GRID SOBRE & SIDEBAR -->
+        <div class="grid-detalhes-conteudo" id="sobre">
+            <div class="card-secao-branca">
+                <p>O Workshop de Tecnologia 2026 reúne profissionais, estudantes e entusiastas para um dia de imersão em tendências, inovações e práticas que estão transformando o mercado.</p>
+
+                <h3>Você vai aprender sobre:</h3>
+                <ul class="lista-aprendizado">
+                    <li><span class="icone-check">✔</span> Inteligência Artificial e o futuro do trabalho</li>
+                    <li><span class="icone-check">✔</span> Segurança da informação e proteção de dados</li>
+                    <li><span class="icone-check">✔</span> Cloud Computing e infraestrutura escalável</li>
+                    <li><span class="icone-check">✔</span> Cases reais de empresas inovadoras</li>
+                    <li><span class="icone-check">✔</span> Networking com profissionais do setor</li>
+                </ul>
+            </div>
+
+            <!-- SIDEBAR -->
+            <div>
+                <div class="card-secao-branca">
+                    <h3>Informações importantes</h3>
+                    <div class="tabela-infos">
+                        <div class="linha-info">
+                            <span><img src="calendario.png" width="15px"> Inscrições até</span>
+                            <strong>05 de setembro de 2026</strong>
+                        </div>
+                        <div class="linha-info">
+                            <span>Certificado</span>
+                            <strong>Sim, incluso</strong>
+                        </div>
+                        <div class="linha-info">
+                            <span>Alimentação</span>
+                            <strong>Coffee break + Almoço</strong>
+                        </div>
+                        <div class="linha-info">
+                            <span>Material de apoio</span>
+                            <strong>Digital</strong>
+                        </div>
+                        <div class="linha-info">
+                            <span>Público-alvo</span>
+                            <strong>Profissionais e estudantes</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-secao-branca">
+                    <h3>Organizador</h3>
+                    <div class="card-organizador">
+                        <div class="perfil-org">
+                            <div class="avatar-org">EC</div>
+                            <div>
+                                <strong>EventCop</strong>
+                                <p style="font-size: 11px; margin: 0; opacity: 0.8;">Eventos Corporativos</p>
+                            </div>
+                        </div>
+                        <a href="#" class="btn-ver-perfil">Ver perfil</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROGRAMAÇÃO -->
+        <div class="card-secao-branca" id="programacao">
+            <h3><img src="calendario.png"> Programação do evento</h3>
+
+            <div class="timeline-programacao">
+                <div class="timeline-item">
+                    <div class="hora-item"><img src="relogio (1).png" width="15px"> 08h30 - 09h00</div>
+                    <div class="detalhe-item-timeline">
+                        <h4>Credenciamento e Coffee Break de Boas-vindas</h4>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="hora-item"><img src="relogio (1).png" width="15px"> 09h00 - 09h30</div>
+                    <div class="detalhe-item-timeline">
+                        <h4>Abertura Oficial</h4>
+                        <p>Boas-vindas e apresentação do evento.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="hora-item"><img src="relogio (1).png" width="15px"> 09h30 - 10h30</div>
+                    <div class="detalhe-item-timeline">
+                        <h4>Inteligência Artificial: Tendências e Aplicações</h4>
+                        <p>Como a IA está transformando negócios e o futuro do trabalho.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="hora-item"><img src="relogio (1).png" width="15px"> 10h30 - 10h45</div>
+                    <div class="detalhe-item-timeline">
+                        <h4>Coffee Break</h4>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="hora-item"><img src="relogio (1).png" width="15px"> 10h45 - 12h00</div>
+                    <div class="detalhe-item-timeline">
+                        <h4>Segurança da Informação na Prática</h4>
+                        <p>Estratégias e ferramentas para proteger dados e sistemas.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="hora-item"><img src="relogio (1).png" width="15px"> 12h00 - 13h30</div>
+                    <div class="detalhe-item-timeline">
+                        <h4>Almoço</h4>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="hora-item"><img src="relogio (1).png" width="15px"> 13h30 - 14h30</div>
+                    <div class="detalhe-item-timeline">
+                        <h4>Cloud Computing e Infraestrutura Escalável</h4>
+                        <p>Como escalar soluções com segurança e eficiência na nuvem.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="hora-item"><img src="relogio (1).png" width="15px"> 14h30 - 15h30</div>
+                    <div class="detalhe-item-timeline">
+                        <h4>Cases de Sucesso: Empresas Inovadoras</h4>
+                        <p>Histórias reais de transformação digital.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="hora-item"><img src="relogio (1).png" width="15px"> 15h30 - 15h45</div>
+                    <div class="detalhe-item-timeline">
+                        <h4>Coffee Break</h4>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="hora-item"><img src="relogio (1).png" width="15px"> 15h45 - 17h00</div>
+                    <div class="detalhe-item-timeline">
+                        <h4>Painel de Discussão</h4>
+                        <p>O futuro da tecnologia e os desafios do mercado.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="hora-item"><img src="relogio (1).png" width="15px"> 17h00 - 18h00</div>
+                    <div class="detalhe-item-timeline">
+                        <h4>Networking & Encerramento</h4>
+                        <p>Conexões, trocas e encerramento do evento.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PALESTRANTES -->
+        <div class="card-secao-branca" id="palestrantes">
+            <div class="carrossel-palestrantes">
+                <h3><img src="grupo-de-usuarios.png"> Palestrantes confirmados</h3>
+                <div>‹ ›</div>
+            </div>
+
+            <div class="grid-palestrantes">
+                <div class="card-palestrante">
+                    <img src="Lucas.jpg" alt="Lucas Moreira" class="foto-palestrante">
+                    <h4>Lucas Moreira</h4>
+                    <p>Especialista em Inteligência Artificial</p>
+                    <span class="icone-linkedin">in</span>
+                </div>
+
+                <div class="card-palestrante">
+                    <img src="Juliana.jpeg" alt="Juliana Mendes" class="foto-palestrante">
+                    <h4>Juliana Mendes</h4>
+                    <p>Gerente de Segurança da Informação</p>
+                    <span class="icone-linkedin">in</span>
+                </div>
+
+                <div class="card-palestrante">
+                    <img src="Rafael.jpg" alt="Rafael Costa" class="foto-palestrante">
+                    <h4>Rafael Costa</h4>
+                    <p>Arquiteto de Cloud Solutions</p>
+                    <span class="icone-linkedin">in</span>
+                </div>
+
+                <div class="card-palestrante">
+                    <img src="camila.jpeg" alt="Camila Ferreira" class="foto-palestrante">
+                    <h4>Camila Ferreira</h4>
+                    <p>CTO na TechSolutions</p>
+                    <span class="icone-linkedin">in</span>
+                </div>
+
+                <div class="card-palestrante">
+                    <img src="Bruno.jpg" alt="Bruno Almeida" class="foto-palestrante">
+                    <h4>Bruno Almeida</h4>
+                    <p>Consultor de Transformação Digital</p>
+                    <span class="icone-linkedin">in</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- LOCAL E FAQ -->
+        <div class="grid-local-faq">
+            <div class="card-secao-branca" id="local">
+                <h3><img src="localizacao.png"> Local do evento</h3>
+                <p><strong>Centro de Convenções de São José dos Campos</strong><br>
+                    Av. Eng. Francisco José Longo, 777<br>
+                    São José dos Campos - SP, 12245-000</p>
+                <img src="maps.png" alt="Mapa de localização" class="imagem-mapa">
+                <a href="#" class="btn-google-maps">Ver no Google Maps ↗</a>
+            </div>
+
+            <div class="card-secao-branca" id="faq">
+                <h3><img src="ponto-de-interrogacao.png"> Perguntas frequentes</h3>
+
+                <div class="accordion-faq">
+                    <div class="item-accordion">
+                        <span>O evento emite certificado?</span>
+                        <span>˅</span>
+                    </div>
+                    <div class="item-accordion">
+                        <span>As vagas são limitadas?</span>
+                        <span>˅</span>
+                    </div>
+                    <div class="item-accordion">
+                        <span>Posso transferir minha inscrição?</span>
+                        <span>˅</span>
+                    </div>
+                    <div class="item-accordion">
+                        <span>Haverá estacionamento no local?</span>
+                        <span>˅</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA INSCRIÇÃO -->
+        <div class="caixa-cta-inscricao">
+            <div class="cta-info">
+                <span class="icone-maleta"><img src="maleta-de-escritorio.png"></span>
+                <div class="cta-texto">
+                    <h3>Garanta sua vaga no Workshop de Tecnologia 2026</h3>
+                    <p>Inscreva-se agora e não perca essa oportunidade!</p>
+                </div>
+            </div>
+            <form class="form-cta" onsubmit="event.preventDefault();">
+                <input type="email" placeholder="Seu melhor e-mail" required>
+                <button type="submit">Quero participar</button>
+            </form>
+        </div>
+
+    </main>
+
+   <footer class="footer">
+        <div class="footer-coluna footer-empresa">
+            <img src="logo footer.jpg.jpeg" alt="EventCop" class="logo-footer">
+            <p class="descricao-footer">
+                A plataforma completa para planejar, organizar e executar eventos corporativos com eficiência.
+            </p>
+            <div class="traco"></div>
+
+            <div class="footer-info">
+                <img src="imagem localizacao footer.png" alt="Localização">
+                <p>
+                    Avenida das Nações, nº 850<br>
+                    São José dos Campos - SP<br>
+                    CEP: 12227-000
+                </p>
+            </div>
+
+            <div class="footer-info">
+                <img src="imagem CNPJ footer.png" alt="Documento">
+                <p>CNPJ: 48.729.315/0001-62</p>
+            </div>
+
+            <div class="footer-info">
+                <img src="imagem e-mail footer.png" alt="E-mail">
+                <p>contato@eventcop.com.br</p>
+            </div>
+
+            <div class="footer-info">
+                <img src="imagem telefone footer.png" alt="Telefone">
+                <p>(12) 3456-7890</p>
+            </div>
+        </div>
+
+        <div class="footer-coluna">
+            <div class="footer-titulo">
+                <img src="imagem calendario footer.png" alt="Calendário">
+                <div>
+                    <h3>Tipos de Eventos</h3>
+                    <div class="traco"></div>
+                </div>
+            </div>
+            <a href="">› Corporativos</a>
+            <a href="">› Workshops e Palestras</a>
+            <a href="">› Treinamentos</a>
+            <a href="">› Feiras e Exposições</a>
+        </div>
+
+        <div class="footer-coluna">
+            <div class="footer-titulo">
+                <img src="imagem recursos plataforma footer.png" alt="Recursos">
+                <div>
+                    <h3>Recursos da<br>Plataforma</h3>
+                    <div class="traco"></div>
+                </div>
+            </div>
+            <a href="">› Gestão de Eventos</a>
+            <a href="">› Inscrições e Convites</a>
+            <a href="">› Relatórios e Métricas</a>
+            <a href="">› Agendamento com Consultores</a>
+        </div>
+
+        <div class="footer-coluna">
+            <div class="footer-titulo">
+                <img src="imagem comece na plataforma footer.png" alt="Comece na plataforma">
+                <div>
+                    <h3>Comece na<br>Plataforma</h3>
+                    <div class="traco"></div>
+                </div>
+            </div>
+            <a href="">› Criar minha conta</a>
+            <a href="">› Quero organizar um evento</a>
+
+            <div class="ajuda">
+                <img src="imagem precisa de ajuda footer.png" alt="Atendimento" class="fone-ajuda">
+                <div>
+                    <h3>Precisa de ajuda?</h3>
+                    <p>Nossa equipe está pronta<br>para te atender!</p>
+                    <a href="" class="btn-fale">
+                        Fale conosco
+                        <span>→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-baixo">
+            <div class="redes">
+                <strong>Siga-nos</strong>
+                <img src="imagem redes sociais footer.png" alt="Instagram, LinkedIn e YouTube">
+            </div>
+            <p>©️ 2026 EventCop. Todos os direitos reservados.</p>
+            <div class="footer-politicas">
+                <a href="">Política de Privacidade</a>
+                <span>|</span>
+                <a href="">Termos de Uso</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
